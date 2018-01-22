@@ -8,6 +8,7 @@ var babelify = require('babelify');
 var source = require('vinyl-source-stream');
 var glob = require('glob');
 var es = require('event-stream');
+var path = require('path');
 
 gulp.task('sass', function () {
   return gulp.src('./scss/styles.scss')
@@ -16,16 +17,16 @@ gulp.task('sass', function () {
 });
 
 gulp.task('babel', function(done) {
-    glob('./public/js/**.jsx', function(err, files) {
+    glob('./resources/jsx/*.jsx', function(err, files) {
         if(err) done(err);
 
         var tasks = files.map(function(entry) {
-            var fileName = entry.substring(0, entry.length - 3) + 'js';
+            var fileName = path.basename(entry.substring(0, entry.length - 3) + 'js');
             return browserify({ entries: [entry], extensions: ['.jsx'] })
                 .transform("babelify", {presets: ["es2015", "react"]})
                 .bundle()
                 .pipe(source(fileName))
-                .pipe(gulp.dest('.'));
+                .pipe(gulp.dest('public'));
         });
         es.merge(tasks).on('end', done);
     })
@@ -33,7 +34,11 @@ gulp.task('babel', function(done) {
 
 gulp.task('watch', function () {
     gulp.watch(
-        ['./scss/*/*.scss','./scss/*.scss', './public/js/*.jsx', './public/js/react/*/*.jsx', './public/js/react/*/*/*.jsx'],
+        ['./scss/*/*.scss',
+            './scss/*.scss',
+            './resources/jsx/*.jsx',
+            './resources/jsx/*/*.jsx',
+            './resources/jsx/*/*/*.jsx'],
         ['sass', 'babel']);
 });
 
