@@ -1,0 +1,23 @@
+.app-not-found {
+  margin-top: 100px;
+}
+
+.app-not-found__parallax-wrap {
+  background: #397ef0;
+  padding-bottom: 100px;
+  margin-top: 10px;
+}
+
+.app-not-found__parallax {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+
+  img {
+    margin-top: -180px;
+  }
+}
+
+.app-not-found__parallax {
+//  margin-top: -100px;
+}

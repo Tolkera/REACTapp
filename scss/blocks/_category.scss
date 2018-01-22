@@ -1,0 +1,31 @@
+.app-categories {
+  .fa {
+    color: rgba(255,255,255,.8);
+    transition: $transition;
+
+    &:hover {
+      color: rgba(255,255,255,1);
+    }
+  }
+}
+
+
+.app-category-item {
+  border-bottom: 1px solid #4a4a4a;
+  margin-bottom: 50px;
+  list-style: none;
+  padding-bottom: 20px;
+}
+
+.app-category__name {
+  cursor: pointer;
+}
+
+.app-category__name-edit {
+  margin-left: 8px;
+  font-size: 20px;
+}
+
+.app-add-category-form {
+  margin-top: 20px;
+}

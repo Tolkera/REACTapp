@@ -1,0 +1,25 @@
+.app-nav-item {
+  display: inline-block;
+}
+
+.app-nav-link {
+  padding: 20px;
+  display: inline-block;
+  color: #fff;
+  font-family: $font-heading;
+
+  &:hover {
+    background: $color-attention;
+    color: #fff;
+  }
+
+  @media(max-width: $mobile) {
+    display: block;
+    padding: 7px 10px;
+  }
+}
+
+.app-nav-link--active {
+  background: $color-attention;
+  color: #fff;
+}

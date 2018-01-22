@@ -1,0 +1,43 @@
+.app-btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  padding: 7px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.app-btn--attention {
+  background: $color-attention;
+  color: #fff;
+
+  &:hover {
+    background: lighten($color-attention, 10%);
+  }
+
+  &:active,
+  &:focus {
+    background: lighten($color-attention, 15%);
+  }
+}
+
+.app-btn--neutral {
+  border: 1px solid rgba(255,255,255,.3);
+  color: #fff;
+
+  &:hover {
+    border-color: rgba(255,255,255,1)
+  }
+}
+
+.app-btn--link {
+  text-decoration: underline;
+  color: rgba(255,255,255,.3);
+
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+}

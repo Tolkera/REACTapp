@@ -1,0 +1,61 @@
+var Task = require('mongoose').model('Task'),
+    Category = require('mongoose').model('Category');
+
+exports.createTask = function(req, res, next){
+    var taskData = req.body;
+
+    if(!taskData.name){
+
+        var err = new Error('Name for the task is missing');
+        res.status(400);
+        return res.send({reason: err.toString(), code: 105})
+    }
+
+    taskData.created = new Date();
+
+
+    Task.create(taskData, function(err, task){
+
+
+        if (err){
+            res.status(400);
+            return res.send({reason: err.toString()})
+        } else {
+            Category.update({ _id: taskData.category },{ $push: { tasks: task._id} }).exec(function(error, category){
+                res.send(task);
+            });
+        }
+    })
+};
+
+exports.getTasks = function(req, res, next){
+    var userId = req.query.userId;
+    Task.find({userId: userId}).exec(function(err, collection){
+        res.send(collection)
+    });
+};
+
+exports.updateTask = function(req, res, next){
+
+    Task.update({_id: req.params.id}, {$set: {
+        done: req.body.done,
+        name: req.body.name
+    }}).exec(function(err, collection){
+        if(err) {
+            req.status(400);
+            return res.send({reason: err.toString()})
+        }
+        res.send({success: true})
+    });
+};
+
+exports.deleteTask = function(req, res, next){
+    Task.remove({_id: req.params.id}).exec(function(err, collection){
+        if(err) {
+            req.status(400);
+            return res.send({reason: err.toString()})
+        } else {
+            res.send({success: true})
+        }
+    });
+};

@@ -1,0 +1,54 @@
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 400;
+  font-family: $font-heading;
+  margin: 0;
+}
+
+label {
+  font-weight: normal;
+}
+
+body {
+  font-family: $font-ordinary;
+  background: #292929;
+  color: #fff;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  outline: none;
+  transition: $transition;
+
+  &:disabled {
+    pointer-events: none;
+    opacity: .5;
+  }
+}
+
+a {
+  text-decoration: none;
+  transition: $transition;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+footer {
+  margin-top: 100px;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

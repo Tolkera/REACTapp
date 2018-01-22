@@ -1,0 +1,25 @@
+.app-header{
+  background: #375a7f;
+  min-height: 58px;
+}
+
+.app-header__user {
+  margin-top: 10px;
+  text-align: right;
+  
+  @media(max-width: $mobile){
+    text-align: left;
+    margin-top: 5px;
+  }
+}
+
+.app-header__logout-btn {
+  margin-left: 5px;
+}
+
+.app-header__name {
+  font-size: 30px;
+  font-family: $font-heading;
+  margin-top: 10px;
+  color: #dfd1f7;
+}

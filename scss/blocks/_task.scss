@@ -1,0 +1,72 @@
+.app-task {
+  padding: 20px 0;
+
+  &.list-group-item {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  &:hover {
+    .app-task__details {
+      display: inline-block;
+    }
+  }
+}
+
+.app-task__name {
+  cursor: pointer;
+  .edit {
+    margin-left: 5px;
+
+  }
+}
+
+.app-task__details-delete {
+  margin-left: 10px;
+
+  @media(max-width: $mobile) {
+    display: block;
+    margin-left: 0;
+  }
+}
+
+.app-task__details {
+  display: none;
+
+  @media(max-width: $tablet) {
+    display: block;
+    text-align: left;
+  }
+
+  @media(max-width: $mobile){
+    margin-top: 10px;
+  }
+}
+
+.app-add-task__sign {
+  font-size: 30px;
+  cursor: pointer;
+  padding-left: 0;
+}
+
+.app-add-task__trigger.fa {
+  color: $color-attention;
+  font-size: 40px;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.app-add-task {
+  margin-bottom: 10px;
+}
+
+.app-task {
+  padding: 20px 10px;
+  list-style: none;
+  background-color: #303030;
+  border: 1px solid #464545;
+  margin-top: 2px;
+  border-radius: 5px;
+}
