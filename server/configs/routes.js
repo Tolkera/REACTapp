@@ -38,7 +38,6 @@ module.exports = function(app, dir) {
             if (err) throw err;
             fileContents = file.replace("UserData", userData);
             res.send(fileContents);
-
         });
     });
 };
