@@ -1,11 +1,14 @@
 import React from 'react';
 
-class Registration extends React.Component {
+class Profile extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
-            isValid: false
+            isValid: true,
+            firstName: this.props.user.firstName,
+            password: '',
+            passwordRepeat: ''
         };
 
         this.updateUser = this.updateUser.bind(this);
@@ -15,15 +18,10 @@ class Registration extends React.Component {
 
     validate(){
 
-        let {username, firstName, password, passwordRepeat} = this.state;
-
-        return {
-            username: !!username,
-            firstName: !!firstName,
-            password: !!password,
-            passwordRepeat: !!passwordRepeat,
-            doPasswordsMatch: (password && passwordRepeat && passwordRepeat === password)
-        };
+        if ((this.state.password || this.state.passwordRepeat) && (this.state.password !== this.state.passwordRepeat)){
+            return false
+        }
+        return true;
     };
 
     isValid(){
@@ -36,14 +34,13 @@ class Registration extends React.Component {
         e.preventDefault();
 
         let user = {
-            username: this.state.username,
+            _id: this.props.user._id,
             firstName: this.state.firstName,
             password: this.state.password,
             passwordRepeat: this.state.passwordRepeat
         };
 
-        this.props.registerUser(user);
-
+        this.props.updateUser(user);
 
     }
 
@@ -58,18 +55,15 @@ class Registration extends React.Component {
     render(){
 
         let isValid = this.isValid();
+        console.log(this.props.user)
 
         return(
-            <div>
+            <div className="app-margin--l">
                 <h2 className="app-heading--secondary">Register</h2>
                 <form>
                     <div className="app-margin--m">
-                        <label>Name</label>
-                        <input type="text" className="app-form-control app-margin--xs"
-                               required
-                               name="username"
-                               onChange={this.handleInputChange}
-                        />
+                        <label>Username</label>
+                        {this.props.user.username}
                     </div>
 
                     <div className="app-margin--m">
@@ -77,8 +71,9 @@ class Registration extends React.Component {
                         <input type="text" className="app-form-control app-margin--xs"
                                required
                                name="firstName"
+                               value={this.state.firstName}
                                onChange={this.handleInputChange}
-                              />
+                        />
                     </div>
                     <div className="app-margin--m">
                         <label>Password</label>
@@ -86,7 +81,7 @@ class Registration extends React.Component {
                                required
                                name="password"
                                onChange={this.handleInputChange}
-                                />
+                        />
                     </div>
                     <div className="app-margin--m">
                         <label>Repeat your password</label>
@@ -94,7 +89,7 @@ class Registration extends React.Component {
                                required
                                name="passwordRepeat"
                                onChange={this.handleInputChange}
-                                />
+                        />
                     </div>
                     <button disabled={!isValid} onClick={this.updateUser} className="app-btn app-btn--attention app-margin--m"
                     >Submit</button>
@@ -106,4 +101,4 @@ class Registration extends React.Component {
     }
 }
 
-module.exports = Registration;
+module.exports = Profile;

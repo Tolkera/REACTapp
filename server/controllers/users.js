@@ -28,16 +28,20 @@ exports.createUser = function(req, res, next){
 
 
 exports.updateUser = function(req, res, next){
+    console.log(req.body);
     var userUpdates = req.body;
 
-    if(req.user._id != userUpdates._id){
-        res.status(403);
-        res.end();
-    }
+    //if(req.user._id != userUpdates._id){
+    //    res.status(403);
+    //    res.end();
+    //}
 
-    req.user.firstName = userUpdates.firstName;
-    req.user.username = userUpdates.username;
-    req.user.tasks = userUpdates.tasks;
+
+    //req.user.firstName = userUpdates.firstName;
+    //req.user.username = userUpdates.username;
+    //req.user.tasks = userUpdates.tasks;
+
+    // TO DO: fix the session
 
     if(userUpdates.password && userUpdates.password.length > 0){
         req.user.salt = encrypt.createSalt();

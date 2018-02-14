@@ -31589,6 +31589,171 @@ module.exports = function (_React$Component) {
 }(_react2.default.Component);
 
 },{"react":396,"react-toastr":171}],403:[function(require,module,exports){
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Profile = function (_React$Component) {
+    _inherits(Profile, _React$Component);
+
+    function Profile(props) {
+        _classCallCheck(this, Profile);
+
+        var _this = _possibleConstructorReturn(this, (Profile.__proto__ || Object.getPrototypeOf(Profile)).call(this, props));
+
+        _this.state = {
+            isValid: true,
+            firstName: _this.props.user.firstName,
+            password: '',
+            passwordRepeat: ''
+        };
+
+        _this.updateUser = _this.updateUser.bind(_this);
+        _this.handleInputChange = _this.handleInputChange.bind(_this);
+        _this.validate = _this.validate.bind(_this);
+        return _this;
+    }
+
+    _createClass(Profile, [{
+        key: 'validate',
+        value: function validate() {
+
+            if ((this.state.password || this.state.passwordRepeat) && this.state.password !== this.state.passwordRepeat) {
+                return false;
+            }
+            return true;
+        }
+    }, {
+        key: 'isValid',
+        value: function isValid() {
+            var errors = this.validate();
+            return Object.keys(errors).every(function (x) {
+                return errors[x];
+            });
+        }
+    }, {
+        key: 'updateUser',
+        value: function updateUser(e) {
+
+            e.preventDefault();
+
+            var user = {
+                _id: this.props.user._id,
+                firstName: this.state.firstName,
+                password: this.state.password,
+                passwordRepeat: this.state.passwordRepeat
+            };
+
+            this.props.updateUser(user);
+        }
+    }, {
+        key: 'handleInputChange',
+        value: function handleInputChange(e) {
+
+            this.setState(_defineProperty({}, e.target.name, e.target.value));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+
+            var isValid = this.isValid();
+            console.log(this.props.user);
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'app-margin--l' },
+                _react2.default.createElement(
+                    'h2',
+                    { className: 'app-heading--secondary' },
+                    'Register'
+                ),
+                _react2.default.createElement(
+                    'form',
+                    null,
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'app-margin--m' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Username'
+                        ),
+                        this.props.user.username
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'app-margin--m' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'First Name'
+                        ),
+                        _react2.default.createElement('input', { type: 'text', className: 'app-form-control app-margin--xs',
+                            required: true,
+                            name: 'firstName',
+                            value: this.state.firstName,
+                            onChange: this.handleInputChange
+                        })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'app-margin--m' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Password'
+                        ),
+                        _react2.default.createElement('input', { type: 'password', className: 'app-form-control app-margin--xs',
+                            required: true,
+                            name: 'password',
+                            onChange: this.handleInputChange
+                        })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'app-margin--m' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            'Repeat your password'
+                        ),
+                        _react2.default.createElement('input', { type: 'password', className: 'app-form-control app-margin--xs',
+                            required: true,
+                            name: 'passwordRepeat',
+                            onChange: this.handleInputChange
+                        })
+                    ),
+                    _react2.default.createElement(
+                        'button',
+                        { disabled: !isValid, onClick: this.updateUser, className: 'app-btn app-btn--attention app-margin--m'
+                        },
+                        'Submit'
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Profile;
+}(_react2.default.Component);
+
+module.exports = Profile;
+
+},{"react":396}],404:[function(require,module,exports){
 "use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31596,8 +31761,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactToastr = require("react-toastr");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31763,7 +31926,7 @@ var Registration = function (_React$Component) {
 
 module.exports = Registration;
 
-},{"react":396,"react-toastr":171}],404:[function(require,module,exports){
+},{"react":396}],405:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -31780,6 +31943,12 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRouterDom = require('react-router-dom');
 
+var _reactToastr = require('react-toastr');
+
+var _profile = require('./components/profile');
+
+var _profile2 = _interopRequireDefault(_profile);
+
 var _registration = require('./components/registration');
 
 var _registration2 = _interopRequireDefault(_registration);
@@ -31787,8 +31956,6 @@ var _registration2 = _interopRequireDefault(_registration);
 var _login = require('./components/login');
 
 var _login2 = _interopRequireDefault(_login);
-
-var _reactToastr = require('react-toastr');
 
 var _notification = require('./components/notification');
 
@@ -31916,7 +32083,8 @@ var Home = function (_React$Component2) {
         }
     }, {
         key: 'updateUser',
-        value: function updateUser() {
+        value: function updateUser(user) {
+            console.log(user);
             var url = '/api/users';
 
             var self = this;
@@ -32040,13 +32208,13 @@ var Home = function (_React$Component2) {
                         )
                     )
                 ),
-                this.props.user ? 'Profile' : _react2.default.createElement(
+                this.props.user ? _react2.default.createElement(_profile2.default, { user: this.props.user, updateUser: this.updateUser }) : _react2.default.createElement(
                     'div',
                     { className: 'app-grid' },
                     _react2.default.createElement(
                         'div',
                         { className: 'app-margin--m app-grid__item app-grid__item--1-2' },
-                        _react2.default.createElement(_registration2.default, { registerUser: this.registerUser, container: container })
+                        _react2.default.createElement(_registration2.default, { registerUser: this.registerUser })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -32063,7 +32231,7 @@ var Home = function (_React$Component2) {
 
 _reactDom2.default.render(_react2.default.createElement(Main, null), document.getElementById('js-app'));
 
-},{"./components/login":401,"./components/notification":402,"./components/registration":403,"./utils/error":405,"react":396,"react-dom":141,"react-router-dom":154,"react-toastr":171}],405:[function(require,module,exports){
+},{"./components/login":401,"./components/notification":402,"./components/profile":403,"./components/registration":404,"./utils/error":406,"react":396,"react-dom":141,"react-router-dom":154,"react-toastr":171}],406:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32114,4 +32282,4 @@ exports.GetErrorText = GetErrorText;
 exports.HandleError = HandleError;
 exports.ShowError = ShowError;
 
-},{}]},{},[404]);
+},{}]},{},[405]);

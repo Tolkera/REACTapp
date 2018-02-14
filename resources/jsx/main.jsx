@@ -6,9 +6,11 @@ import {
     Link,
     NavLink
 } from 'react-router-dom'
+import { ToastContainer } from "react-toastr";
+import Profile from './components/profile';
 import Registration from './components/registration';
 import Login from './components/login';
-import { ToastContainer } from "react-toastr";
+
 import Notification  from './components/notification';
 import { HandleError, GetErrorText, ShowError } from './utils/error';
 
@@ -99,7 +101,8 @@ class Home extends React.Component{
             })
     }
 
-    updateUser(){
+    updateUser(user){
+        console.log(user);
         const url = '/api/users';
 
         let self = this;
@@ -207,12 +210,14 @@ class Home extends React.Component{
                     </div>
 
                     {this.props.user ?
-                        'Profile' :
+                        <Profile user={this.props.user} updateUser={this.updateUser}/>
+
+                        :
 
                         <div className="app-grid">
 
                             <div className="app-margin--m app-grid__item app-grid__item--1-2">
-                                <Registration registerUser={this.registerUser} container={container}/>
+                                <Registration registerUser={this.registerUser}/>
                             </div>
                             <div className="app-margin--m app-grid__item app-grid__item--1-2">
                                 <Login updateUser={this.props.updateUser} />
