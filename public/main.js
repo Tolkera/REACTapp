@@ -31365,6 +31365,201 @@ module.exports = warning;
 },{"_process":132}],401:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = require('react-router-dom');
+
+var _error = require('../utils/error');
+
+var _user = require('../services/user');
+
+var _reactToastr = require('react-toastr');
+
+var _profile = require('../components/profile');
+
+var _profile2 = _interopRequireDefault(_profile);
+
+var _registration = require('../components/registration');
+
+var _registration2 = _interopRequireDefault(_registration);
+
+var _login = require('../components/login');
+
+var _login2 = _interopRequireDefault(_login);
+
+var _notification = require('../components/notification');
+
+var _notification2 = _interopRequireDefault(_notification);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var notificationId = 0;
+
+var Home = function (_React$Component) {
+    _inherits(Home, _React$Component);
+
+    function Home(props) {
+        _classCallCheck(this, Home);
+
+        var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
+
+        _this.state = { notification: {} };
+        _this.showNotification = _this.showNotification.bind(_this);
+        _this.updateUser = _this.updateUser.bind(_this);
+        return _this;
+    }
+
+    _createClass(Home, [{
+        key: 'showNotification',
+        value: function showNotification(data) {
+            data.id = ++notificationId;
+            this.setState({
+                notification: data
+            });
+        }
+    }, {
+        key: 'updateUser',
+        value: function updateUser(type, user) {
+            var updateApiCall = void 0;
+            switch (type) {
+                case 'login':
+                    updateApiCall = _user.LoginUser;
+                    break;
+                case 'logout':
+                    updateApiCall = _user.LogoutUser;
+                    break;
+                case 'register':
+                    updateApiCall = _user.RegisterUser;
+                    break;
+                case 'update':
+                    updateApiCall = _user.UpdateUser;
+                    break;
+            }
+
+            updateApiCall(user, this.showNotification, this.props.updateUser);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { className: 'app-header' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'app-container' },
+                        _react2.default.createElement(
+                            'nav',
+                            { className: '' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'app-grid' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'app-grid__item app-grid__item--1-4' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'app-header__name' },
+                                        'React App'
+                                    )
+                                ),
+                                this.props.user ? _react2.default.createElement(
+                                    'div',
+                                    { className: 'app-grid__item app-grid__item--1-2' },
+                                    _react2.default.createElement(
+                                        'ul',
+                                        { className: '' },
+                                        _react2.default.createElement(
+                                            'li',
+                                            { className: 'app-nav-item' },
+                                            _react2.default.createElement(
+                                                _reactRouterDom.NavLink,
+                                                { className: 'app-nav-link', activeClassName: 'app-nav-link--active', exact: true, to: '/' },
+                                                'Profile'
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'li',
+                                            { className: 'app-nav-item' },
+                                            _react2.default.createElement(
+                                                _reactRouterDom.NavLink,
+                                                { className: 'app-nav-link', activeClassName: 'app-nav-link--active', to: '/tasks' },
+                                                'Tasks'
+                                            )
+                                        )
+                                    )
+                                ) : null,
+                                this.props.user ? _react2.default.createElement(
+                                    'div',
+                                    { className: 'app-grid__item app-grid__item--1-4' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'app-header__user' },
+                                        'Welcome, ',
+                                        this.props.user.firstName,
+                                        _react2.default.createElement(
+                                            'button',
+                                            { className: 'app-header__logout-btn app-btn app-btn--neutral',
+                                                onClick: function onClick() {
+                                                    _this2.updateUser('logout', null);
+                                                } },
+                                            'Logout'
+                                        )
+                                    )
+                                ) : null
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'app-container' },
+                    _react2.default.createElement(_notification2.default, { data: this.state.notification }),
+                    this.props.user ? _react2.default.createElement(_profile2.default, { user: this.props.user, updateUser: this.updateUser }) : _react2.default.createElement(
+                        'div',
+                        { className: 'app-grid' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'app-margin--m app-grid__item app-grid__item--1-2' },
+                            _react2.default.createElement(_registration2.default, { updateUser: this.updateUser })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'app-margin--m app-grid__item app-grid__item--1-2' },
+                            _react2.default.createElement(_login2.default, { updateUser: this.updateUser })
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Home;
+}(_react2.default.Component);
+
+exports.default = Home;
+
+},{"../components/login":402,"../components/notification":403,"../components/profile":404,"../components/registration":405,"../services/user":407,"../utils/error":408,"react":396,"react-router-dom":154,"react-toastr":171}],402:[function(require,module,exports){
+'use strict';
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -31428,7 +31623,6 @@ module.exports = function (_React$Component) {
     }, {
         key: 'loginUser',
         value: function loginUser(e) {
-            var _this2 = this;
 
             e.preventDefault();
 
@@ -31437,21 +31631,7 @@ module.exports = function (_React$Component) {
                 password: this.state.password
             };
 
-            var url = '/api/login';
-
-            fetch(url, {
-                body: JSON.stringify(user),
-                credentials: 'include',
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                }
-
-            }).then(function (response) {
-                return response.json();
-            }).then(function (data) {
-                _this2.props.updateUser(data);
-            });
+            this.props.updateUser('login', user);
         }
     }, {
         key: 'render',
@@ -31514,7 +31694,7 @@ module.exports = function (_React$Component) {
     return Login;
 }(_react2.default.Component);
 
-},{"react":396}],402:[function(require,module,exports){
+},{"react":396}],403:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31589,7 +31769,7 @@ module.exports = function (_React$Component) {
     return Login;
 }(_react2.default.Component);
 
-},{"react":396,"react-toastr":171}],403:[function(require,module,exports){
+},{"react":396,"react-toastr":171}],404:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31625,26 +31805,17 @@ var Profile = function (_React$Component) {
 
         _this.updateUser = _this.updateUser.bind(_this);
         _this.handleInputChange = _this.handleInputChange.bind(_this);
-        _this.validate = _this.validate.bind(_this);
         return _this;
     }
 
     _createClass(Profile, [{
-        key: 'validate',
-        value: function validate() {
+        key: 'isValid',
+        value: function isValid() {
 
             if ((this.state.password || this.state.passwordRepeat) && this.state.password !== this.state.passwordRepeat) {
                 return false;
             }
             return true;
-        }
-    }, {
-        key: 'isValid',
-        value: function isValid() {
-            var errors = this.validate();
-            return Object.keys(errors).every(function (x) {
-                return errors[x];
-            });
         }
     }, {
         key: 'updateUser',
@@ -31659,7 +31830,7 @@ var Profile = function (_React$Component) {
                 passwordRepeat: this.state.passwordRepeat
             };
 
-            this.props.updateUser(user);
+            this.props.updateUser('update', user);
         }
     }, {
         key: 'handleInputChange',
@@ -31679,7 +31850,7 @@ var Profile = function (_React$Component) {
                 _react2.default.createElement(
                     'h2',
                     { className: 'app-heading--secondary' },
-                    'Register'
+                    'Profile'
                 ),
                 _react2.default.createElement(
                     'form',
@@ -31690,7 +31861,7 @@ var Profile = function (_React$Component) {
                         _react2.default.createElement(
                             'label',
                             null,
-                            'Username'
+                            'Username: '
                         ),
                         this.props.user.username
                     ),
@@ -31753,12 +31924,12 @@ var Profile = function (_React$Component) {
 
 module.exports = Profile;
 
-},{"react":396}],404:[function(require,module,exports){
-"use strict";
+},{"react":396}],405:[function(require,module,exports){
+'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -31791,7 +31962,7 @@ var Registration = function (_React$Component) {
     }
 
     _createClass(Registration, [{
-        key: "validate",
+        key: 'validate',
         value: function validate() {
             var _state = this.state,
                 username = _state.username,
@@ -31809,7 +31980,7 @@ var Registration = function (_React$Component) {
             };
         }
     }, {
-        key: "isValid",
+        key: 'isValid',
         value: function isValid() {
             var errors = this.validate();
             return Object.keys(errors).every(function (x) {
@@ -31817,7 +31988,7 @@ var Registration = function (_React$Component) {
             });
         }
     }, {
-        key: "updateUser",
+        key: 'updateUser',
         value: function updateUser(e) {
 
             e.preventDefault();
@@ -31829,92 +32000,92 @@ var Registration = function (_React$Component) {
                 passwordRepeat: this.state.passwordRepeat
             };
 
-            this.props.registerUser(user);
+            this.props.updateUser('register', user);
         }
     }, {
-        key: "handleInputChange",
+        key: 'handleInputChange',
         value: function handleInputChange(e) {
 
             this.setState(_defineProperty({}, e.target.name, e.target.value));
         }
     }, {
-        key: "render",
+        key: 'render',
         value: function render() {
 
             var isValid = this.isValid();
 
             return _react2.default.createElement(
-                "div",
+                'div',
                 null,
                 _react2.default.createElement(
-                    "h2",
-                    { className: "app-heading--secondary" },
-                    "Register"
+                    'h2',
+                    { className: 'app-heading--secondary' },
+                    'Register'
                 ),
                 _react2.default.createElement(
-                    "form",
+                    'form',
                     null,
                     _react2.default.createElement(
-                        "div",
-                        { className: "app-margin--m" },
+                        'div',
+                        { className: 'app-margin--m' },
                         _react2.default.createElement(
-                            "label",
+                            'label',
                             null,
-                            "Name"
+                            'Name'
                         ),
-                        _react2.default.createElement("input", { type: "text", className: "app-form-control app-margin--xs",
+                        _react2.default.createElement('input', { type: 'text', className: 'app-form-control app-margin--xs',
                             required: true,
-                            name: "username",
+                            name: 'username',
                             onChange: this.handleInputChange
                         })
                     ),
                     _react2.default.createElement(
-                        "div",
-                        { className: "app-margin--m" },
+                        'div',
+                        { className: 'app-margin--m' },
                         _react2.default.createElement(
-                            "label",
+                            'label',
                             null,
-                            "First Name"
+                            'First Name'
                         ),
-                        _react2.default.createElement("input", { type: "text", className: "app-form-control app-margin--xs",
+                        _react2.default.createElement('input', { type: 'text', className: 'app-form-control app-margin--xs',
                             required: true,
-                            name: "firstName",
+                            name: 'firstName',
                             onChange: this.handleInputChange
                         })
                     ),
                     _react2.default.createElement(
-                        "div",
-                        { className: "app-margin--m" },
+                        'div',
+                        { className: 'app-margin--m' },
                         _react2.default.createElement(
-                            "label",
+                            'label',
                             null,
-                            "Password"
+                            'Password'
                         ),
-                        _react2.default.createElement("input", { type: "password", className: "app-form-control app-margin--xs",
+                        _react2.default.createElement('input', { type: 'password', className: 'app-form-control app-margin--xs',
                             required: true,
-                            name: "password",
+                            name: 'password',
                             onChange: this.handleInputChange
                         })
                     ),
                     _react2.default.createElement(
-                        "div",
-                        { className: "app-margin--m" },
+                        'div',
+                        { className: 'app-margin--m' },
                         _react2.default.createElement(
-                            "label",
+                            'label',
                             null,
-                            "Repeat your password"
+                            'Repeat your password'
                         ),
-                        _react2.default.createElement("input", { type: "password", className: "app-form-control app-margin--xs",
+                        _react2.default.createElement('input', { type: 'password', className: 'app-form-control app-margin--xs',
                             required: true,
-                            name: "passwordRepeat",
+                            name: 'passwordRepeat',
                             onChange: this.handleInputChange
                         })
                     ),
                     _react2.default.createElement(
-                        "button",
-                        { disabled: !isValid, onClick: this.updateUser, className: "app-btn app-btn--attention app-margin--m"
+                        'button',
+                        { disabled: !isValid, onClick: this.updateUser, className: 'app-btn app-btn--attention app-margin--m'
                         },
-                        "Submit"
+                        'Submit'
                     )
                 )
             );
@@ -31926,7 +32097,7 @@ var Registration = function (_React$Component) {
 
 module.exports = Registration;
 
-},{"react":396}],405:[function(require,module,exports){
+},{"react":396}],406:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -31943,25 +32114,9 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRouterDom = require('react-router-dom');
 
-var _reactToastr = require('react-toastr');
+var _home = require('./components/home');
 
-var _profile = require('./components/profile');
-
-var _profile2 = _interopRequireDefault(_profile);
-
-var _registration = require('./components/registration');
-
-var _registration2 = _interopRequireDefault(_registration);
-
-var _login = require('./components/login');
-
-var _login2 = _interopRequireDefault(_login);
-
-var _notification = require('./components/notification');
-
-var _notification2 = _interopRequireDefault(_notification);
-
-var _error = require('./utils/error');
+var _home2 = _interopRequireDefault(_home);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31970,15 +32125,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var notificationId = 0;
-
-var requestOptions = {
-    credentials: 'include',
-    headers: {
-        "Content-Type": "application/json"
-    }
-};
 
 var Main = function (_React$Component) {
     _inherits(Main, _React$Component);
@@ -31993,7 +32139,6 @@ var Main = function (_React$Component) {
         };
 
         _this.updateUser = _this.updateUser.bind(_this);
-        _this.logoutUser = _this.logoutUser.bind(_this);
         return _this;
     }
 
@@ -32001,11 +32146,6 @@ var Main = function (_React$Component) {
         key: 'updateUser',
         value: function updateUser(user) {
             this.setState({ user: user });
-        }
-    }, {
-        key: 'logoutUser',
-        value: function logoutUser() {
-            this.setState({ user: null });
         }
     }, {
         key: 'render',
@@ -32023,12 +32163,31 @@ var Main = function (_React$Component) {
                         null,
                         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/',
                             render: function render(props) {
-                                return _react2.default.createElement(Home, _extends({
+                                return _react2.default.createElement(_home2.default, _extends({
                                     user: _this2.state.user,
                                     updateUser: _this2.updateUser,
                                     logoutUser: _this2.logoutUser
                                 }, props));
                             } })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'app-container' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'app-about app-dimmed app-border  app-margin--xxl' },
+                        'This is a simple ReactJS/ NodeJS / MongoDB app with basic functionality:',
+                        _react2.default.createElement('img', { src: 'images/bosch--s.png', className: 'app-logo', alt: '' }),
+                        _react2.default.createElement('br', null),
+                        _react2.default.createElement('br', null),
+                        '1. Registering, logging in and logging out ',
+                        _react2.default.createElement('br', null),
+                        '2. Editing your profile after registration ',
+                        _react2.default.createElement('br', null),
+                        '3. Creating categories of items, deleting them and updating them ',
+                        _react2.default.createElement('br', null),
+                        '4. Routing (restricted for logged in, 404)'
                     )
                 )
             );
@@ -32038,204 +32197,132 @@ var Main = function (_React$Component) {
     return Main;
 }(_react2.default.Component);
 
-var Home = function (_React$Component2) {
-    _inherits(Home, _React$Component2);
-
-    function Home(props) {
-        _classCallCheck(this, Home);
-
-        var _this3 = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
-
-        _this3.state = { notification: {} };
-        _this3.logoutUser = _this3.logoutUser.bind(_this3);
-        _this3.registerUser = _this3.registerUser.bind(_this3);
-        _this3.showNotification = _this3.showNotification.bind(_this3);
-        _this3.updateUser = _this3.updateUser.bind(_this3);
-        return _this3;
-    }
-
-    _createClass(Home, [{
-        key: 'showNotification',
-        value: function showNotification(data) {
-            data.id = ++notificationId;
-            this.setState({
-                notification: data
-            });
-        }
-    }, {
-        key: 'logoutUser',
-        value: function logoutUser() {
-            var _this4 = this;
-
-            var url = '/logout';
-
-            var request = Object.assign({
-                method: 'GET'
-            }, requestOptions);
-
-            fetch(url, request).then(_error.HandleError).then(function (res) {
-                _this4.showNotification({
-                    type: 'success',
-                    texts: {
-                        heading: 'Bye-Bye',
-                        text: 'I will miss you'
-                    }
-                });
-                _this4.props.logoutUser();
-            }).catch(function (error) {
-                (0, _error.ShowError)(error, _this4.showNotification);
-            });
-        }
-    }, {
-        key: 'updateUser',
-        value: function updateUser(user) {
-            var _this5 = this;
-
-            var url = '/api/users';
-
-            var request = Object.assign({
-                body: JSON.stringify(user),
-                method: 'PUT'
-            }, requestOptions);
-
-            fetch(url, request).then(_error.HandleError).then(function (res) {
-                _this5.showNotification({
-                    type: 'success',
-                    texts: {
-                        heading: 'Lovely!',
-                        text: 'Your profile is updated!'
-                    }
-                });
-                _this5.props.updateUser(user);
-            }).catch(function (error) {
-                (0, _error.ShowError)(error, _this5.showNotification);
-            });
-        }
-    }, {
-        key: 'registerUser',
-        value: function registerUser(user) {
-            var _this6 = this;
-
-            var url = '/api/users';
-
-            var request = Object.assign({
-                body: JSON.stringify(user),
-                method: 'POST'
-            }, requestOptions);
-
-            fetch(url, request).then(_error.HandleError).then(function (res) {
-                res.json().then(function (res) {
-                    _this6.showNotification({
-                        type: 'success',
-                        texts: {
-                            heading: 'Great',
-                            text: 'Your profile is live!'
-                        }
-                    });
-                    _this6.props.updateUser(res);
-                });
-            }).catch(function (error) {
-                (0, _error.ShowError)(error, _this6.showNotification);
-            });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { className: 'app-container' },
-                _react2.default.createElement(_notification2.default, { data: this.state.notification }),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'app-header' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'app-container' },
-                        _react2.default.createElement(
-                            'nav',
-                            { className: '' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'app-grid' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'app-grid__item app-grid__item--1-4' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'app-header__name' },
-                                        'React App'
-                                    )
-                                ),
-                                this.props.user ? _react2.default.createElement(
-                                    'div',
-                                    { className: 'app-grid__item app-grid__item--1-2' },
-                                    _react2.default.createElement(
-                                        'ul',
-                                        { className: '' },
-                                        _react2.default.createElement(
-                                            'li',
-                                            { className: 'app-nav-item' },
-                                            _react2.default.createElement(
-                                                _reactRouterDom.NavLink,
-                                                { className: 'app-nav-link', activeClassName: 'app-nav-link--active', exact: true, to: '/' },
-                                                'Profile'
-                                            )
-                                        ),
-                                        _react2.default.createElement(
-                                            'li',
-                                            { className: 'app-nav-item' },
-                                            _react2.default.createElement(
-                                                _reactRouterDom.NavLink,
-                                                { className: 'app-nav-link', activeClassName: 'app-nav-link--active', to: '/tasks' },
-                                                'Tasks'
-                                            )
-                                        )
-                                    )
-                                ) : null,
-                                this.props.user ? _react2.default.createElement(
-                                    'div',
-                                    { className: 'app-grid__item app-grid__item--1-4' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'app-header__user' },
-                                        'Welcome, ',
-                                        this.props.user.firstName,
-                                        _react2.default.createElement(
-                                            'button',
-                                            { className: 'app-header__logout-btn app-btn app-btn--neutral',
-                                                onClick: this.logoutUser },
-                                            'Logout'
-                                        )
-                                    )
-                                ) : null
-                            )
-                        )
-                    )
-                ),
-                this.props.user ? _react2.default.createElement(_profile2.default, { user: this.props.user, updateUser: this.updateUser }) : _react2.default.createElement(
-                    'div',
-                    { className: 'app-grid' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'app-margin--m app-grid__item app-grid__item--1-2' },
-                        _react2.default.createElement(_registration2.default, { registerUser: this.registerUser })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'app-margin--m app-grid__item app-grid__item--1-2' },
-                        _react2.default.createElement(_login2.default, { updateUser: this.props.updateUser })
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Home;
-}(_react2.default.Component);
-
 _reactDom2.default.render(_react2.default.createElement(Main, null), document.getElementById('js-app'));
 
-},{"./components/login":401,"./components/notification":402,"./components/profile":403,"./components/registration":404,"./utils/error":406,"react":396,"react-dom":141,"react-router-dom":154,"react-toastr":171}],406:[function(require,module,exports){
+},{"./components/home":401,"react":396,"react-dom":141,"react-router-dom":154}],407:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.RegisterUser = exports.UpdateUser = exports.LogoutUser = exports.LoginUser = undefined;
+
+var _error = require('../utils/error');
+
+var requestOptions = {
+    credentials: 'include',
+    headers: {
+        "Content-Type": "application/json"
+    }
+};
+
+function LoginUser(user, notificationCallback, dataCallback) {
+    var url = '/api/login';
+
+    var request = Object.assign({
+        body: JSON.stringify(user),
+        method: 'POST'
+    }, requestOptions);
+
+    fetch(url, request).then(_error.HandleError).then(function (res) {
+        res.json().then(function (res) {
+            notificationCallback({
+                type: 'success',
+                texts: {
+                    heading: 'Lovely!',
+                    text: 'You are in!'
+                }
+            });
+            if (dataCallback) {
+                dataCallback(res);
+            }
+        });
+    }).catch(function (error) {
+        (0, _error.ShowError)(error, notificationCallback);
+    });
+}
+
+function LogoutUser(user, notificationCallback, dataCallback) {
+    var url = '/logout';
+
+    var request = Object.assign({
+        method: 'GET'
+    }, requestOptions);
+
+    fetch(url, request).then(_error.HandleError).then(function (res) {
+        notificationCallback({
+            type: 'success',
+            texts: {
+                heading: 'Bye-Bye',
+                text: 'I will miss you'
+            }
+        });
+        if (dataCallback) {
+            dataCallback(null);
+        }
+    }).catch(function (error) {
+        (0, _error.ShowError)(error, notificationCallback);
+    });
+}
+
+function UpdateUser(user, notificationCallback, dataCallback) {
+    var url = '/api/users';
+
+    var request = Object.assign({
+        body: JSON.stringify(user),
+        method: 'PUT'
+    }, requestOptions);
+
+    fetch(url, request).then(_error.HandleError).then(function (res) {
+        res.json().then(function (res) {
+            notificationCallback({
+                type: 'success',
+                texts: {
+                    heading: 'Lovely!',
+                    text: 'Your profile is updated!'
+                }
+            });
+            if (dataCallback) {
+                dataCallback(res);
+            }
+        });
+    }).catch(function (error) {
+        (0, _error.ShowError)(error, notificationCallback);
+    });
+}
+
+function RegisterUser(user, notificationCallback, dataCallback) {
+    var url = '/api/users';
+
+    var request = Object.assign({
+        body: JSON.stringify(user),
+        method: 'POST'
+    }, requestOptions);
+
+    fetch(url, request).then(_error.HandleError).then(function (res) {
+        res.json().then(function (res) {
+            notificationCallback({
+                type: 'success',
+                texts: {
+                    heading: 'Lovely!',
+                    text: 'Your profile is live!'
+                }
+            });
+            if (dataCallback) {
+                dataCallback(res);
+            }
+        });
+    }).catch(function (error) {
+        (0, _error.ShowError)(error, notificationCallback);
+    });
+}
+
+exports.LoginUser = LoginUser;
+exports.LogoutUser = LogoutUser;
+exports.UpdateUser = UpdateUser;
+exports.RegisterUser = RegisterUser;
+
+},{"../utils/error":408}],408:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32262,6 +32349,7 @@ function HandleError(response) {
 }
 
 function ShowError(error, callback) {
+    console.log(error);
 
     var errorData = {
         type: 'error',
@@ -32286,4 +32374,4 @@ exports.GetErrorText = GetErrorText;
 exports.HandleError = HandleError;
 exports.ShowError = ShowError;
 
-},{}]},{},[405]);
+},{}]},{},[406]);

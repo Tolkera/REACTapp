@@ -13,20 +13,14 @@ class Profile extends React.Component {
 
         this.updateUser = this.updateUser.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.validate = this.validate.bind(this);
     }
 
-    validate(){
+    isValid(){
 
         if ((this.state.password || this.state.passwordRepeat) && (this.state.password !== this.state.passwordRepeat)){
             return false
         }
         return true;
-    };
-
-    isValid(){
-        let errors = this.validate();
-        return Object.keys(errors).every(x => errors[x])
     }
 
     updateUser(e){
@@ -40,7 +34,7 @@ class Profile extends React.Component {
             passwordRepeat: this.state.passwordRepeat
         };
 
-        this.props.updateUser(user);
+        this.props.updateUser('update', user);
 
     }
 
@@ -58,10 +52,10 @@ class Profile extends React.Component {
 
         return(
             <div className="app-margin--l">
-                <h2 className="app-heading--secondary">Register</h2>
+                <h2 className="app-heading--secondary">Profile</h2>
                 <form>
                     <div className="app-margin--m">
-                        <label>Username</label>
+                        <label>Username: </label>
                         {this.props.user.username}
                     </div>
 

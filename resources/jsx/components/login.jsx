@@ -43,22 +43,8 @@ module.exports = class Login extends React.Component {
             password: this.state.password
         };
 
-        const url = '/api/login';
+        this.props.updateUser('login', user);
 
-        fetch(url, {
-            body: JSON.stringify(user),
-            credentials: 'include',
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            }
-
-        }).then( (response) => {
-                return response.json()
-            })
-            .then( (data) => {
-                this.props.updateUser(data)
-            })
     };
 
     render(){

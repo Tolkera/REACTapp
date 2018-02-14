@@ -42,7 +42,7 @@ class Registration extends React.Component {
             passwordRepeat: this.state.passwordRepeat
         };
 
-        this.props.registerUser(user);
+        this.props.updateUser('register', user);
 
 
     }

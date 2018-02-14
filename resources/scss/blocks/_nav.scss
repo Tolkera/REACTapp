@@ -9,7 +9,7 @@
   font-family: $font-heading;
 
   &:hover {
-    background: $color-attention;
+    background: #000;
     color: #fff;
   }
 
@@ -20,6 +20,6 @@
 }
 
 .app-nav-link--active {
-  background: $color-attention;
+  background: #000;
   color: #fff;
 }

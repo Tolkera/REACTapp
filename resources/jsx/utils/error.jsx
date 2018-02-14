@@ -19,6 +19,7 @@ function HandleError(response) {
 }
 
 function ShowError(error, callback){
+    console.log(error);
 
     let errorData = {
         type: 'error',
