@@ -14,8 +14,14 @@ import Login from './components/login';
 import Notification  from './components/notification';
 import { HandleError, GetErrorText, ShowError } from './utils/error';
 
-let container;
 let notificationId = 0;
+
+let requestOptions = {
+    credentials: 'include',
+    headers: {
+        "Content-Type": "application/json"
+    }
+};
 
 class Main extends React.Component {
 
@@ -64,97 +70,92 @@ class Home extends React.Component{
         this.logoutUser = this.logoutUser.bind(this);
         this.registerUser = this.registerUser.bind(this);
         this.showNotification = this.showNotification.bind(this);
+        this.updateUser = this.updateUser.bind(this);
     }
 
     showNotification(data){
         data.id = ++notificationId;
         this.setState({
             notification: data
-
         })
     }
 
     logoutUser(){
 
         const url = '/logout';
-        let self = this;
 
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
+        let request = Object.assign({
+            method: 'GET'
+        }, requestOptions);
+
+        fetch(url, request)
             .then(HandleError)
             .then(res => {
-                self.showNotification({
+                this.showNotification({
                     type: 'success',
                     texts: {
                         heading: 'Bye-Bye',
                         text: 'I will miss you'
                     }
                 });
-                self.props.logoutUser();
+                this.props.logoutUser();
             })
             .catch((error) => {
-                ShowError(error, self.showNotification)
+                ShowError(error, this.showNotification)
             })
     }
 
     updateUser(user){
-        console.log(user);
         const url = '/api/users';
 
-        let self = this;
-
-        fetch(url, {
+        let request = Object.assign({
             body: JSON.stringify(user),
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
+            method: 'PUT'
+        }, requestOptions);
+
+        fetch(url, request)
             .then(HandleError)
             .then(res => {
-                self.showNotification({
+                this.showNotification({
                     type: 'success',
                     texts: {
                         heading: 'Lovely!',
                         text: 'Your profile is updated!'
                     }
                 });
-                self.props.updateUser(user);
+                this.props.updateUser(user);
             })
             .catch((error) => {
-                ShowError(error, self.showNotification)
+                ShowError(error, this.showNotification)
             })
     }
 
     registerUser(user){
-        const url = '/api/users';
 
-        let self = this;
+        let url = '/api/users';
 
-        fetch(url, {
+        let request = Object.assign({
             body: JSON.stringify(user),
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
+            method: 'POST'
+        }, requestOptions);
+
+        fetch(url, request)
             .then(HandleError)
             .then(res => {
-                self.showNotification({
-                    type: 'success',
-                    texts: {
-                        heading: 'Great',
-                        text: 'Your profile is live!'
-                    }
-                });
-                self.props.updateUser(user);
+                res.json().then((res) => {
+                    this.showNotification({
+                        type: 'success',
+                        texts: {
+                            heading: 'Great',
+                            text: 'Your profile is live!'
+                        }
+                    });
+                    this.props.updateUser(res);
+                })
+
             })
             .catch((error) => {
-                ShowError(error, self.showNotification)
+                ShowError(error, this.showNotification)
             })
     }
 

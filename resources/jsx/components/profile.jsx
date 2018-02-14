@@ -55,7 +55,6 @@ class Profile extends React.Component {
     render(){
 
         let isValid = this.isValid();
-        console.log(this.props.user)
 
         return(
             <div className="app-margin--l">

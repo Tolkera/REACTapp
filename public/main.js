@@ -31441,6 +31441,7 @@ module.exports = function (_React$Component) {
 
             fetch(url, {
                 body: JSON.stringify(user),
+                credentials: 'include',
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -31671,7 +31672,6 @@ var Profile = function (_React$Component) {
         value: function render() {
 
             var isValid = this.isValid();
-            console.log(this.props.user);
 
             return _react2.default.createElement(
                 'div',
@@ -31971,8 +31971,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var container = void 0;
 var notificationId = 0;
+
+var requestOptions = {
+    credentials: 'include',
+    headers: {
+        "Content-Type": "application/json"
+    }
+};
 
 var Main = function (_React$Component) {
     _inherits(Main, _React$Component);
@@ -32044,6 +32050,7 @@ var Home = function (_React$Component2) {
         _this3.logoutUser = _this3.logoutUser.bind(_this3);
         _this3.registerUser = _this3.registerUser.bind(_this3);
         _this3.showNotification = _this3.showNotification.bind(_this3);
+        _this3.updateUser = _this3.updateUser.bind(_this3);
         return _this3;
     }
 
@@ -32053,85 +32060,82 @@ var Home = function (_React$Component2) {
             data.id = ++notificationId;
             this.setState({
                 notification: data
-
             });
         }
     }, {
         key: 'logoutUser',
         value: function logoutUser() {
+            var _this4 = this;
 
             var url = '/logout';
-            var self = this;
 
-            fetch(url, {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }).then(_error.HandleError).then(function (res) {
-                self.showNotification({
+            var request = Object.assign({
+                method: 'GET'
+            }, requestOptions);
+
+            fetch(url, request).then(_error.HandleError).then(function (res) {
+                _this4.showNotification({
                     type: 'success',
                     texts: {
                         heading: 'Bye-Bye',
                         text: 'I will miss you'
                     }
                 });
-                self.props.logoutUser();
+                _this4.props.logoutUser();
             }).catch(function (error) {
-                (0, _error.ShowError)(error, self.showNotification);
+                (0, _error.ShowError)(error, _this4.showNotification);
             });
         }
     }, {
         key: 'updateUser',
         value: function updateUser(user) {
-            console.log(user);
+            var _this5 = this;
+
             var url = '/api/users';
 
-            var self = this;
-
-            fetch(url, {
+            var request = Object.assign({
                 body: JSON.stringify(user),
-                method: 'PUT',
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }).then(_error.HandleError).then(function (res) {
-                self.showNotification({
+                method: 'PUT'
+            }, requestOptions);
+
+            fetch(url, request).then(_error.HandleError).then(function (res) {
+                _this5.showNotification({
                     type: 'success',
                     texts: {
                         heading: 'Lovely!',
                         text: 'Your profile is updated!'
                     }
                 });
-                self.props.updateUser(user);
+                _this5.props.updateUser(user);
             }).catch(function (error) {
-                (0, _error.ShowError)(error, self.showNotification);
+                (0, _error.ShowError)(error, _this5.showNotification);
             });
         }
     }, {
         key: 'registerUser',
         value: function registerUser(user) {
+            var _this6 = this;
+
             var url = '/api/users';
 
-            var self = this;
-
-            fetch(url, {
+            var request = Object.assign({
                 body: JSON.stringify(user),
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }).then(_error.HandleError).then(function (res) {
-                self.showNotification({
-                    type: 'success',
-                    texts: {
-                        heading: 'Great',
-                        text: 'Your profile is live!'
-                    }
+                method: 'POST'
+            }, requestOptions);
+
+            fetch(url, request).then(_error.HandleError).then(function (res) {
+                res.json().then(function (res) {
+                    _this6.showNotification({
+                        type: 'success',
+                        texts: {
+                            heading: 'Great',
+                            text: 'Your profile is live!'
+                        }
+                    });
+                    _this6.props.updateUser(res);
                 });
-                self.props.updateUser(user);
             }).catch(function (error) {
-                (0, _error.ShowError)(error, self.showNotification);
+                (0, _error.ShowError)(error, _this6.showNotification);
             });
         }
     }, {

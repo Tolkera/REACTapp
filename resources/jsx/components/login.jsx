@@ -47,6 +47,7 @@ module.exports = class Login extends React.Component {
 
         fetch(url, {
             body: JSON.stringify(user),
+            credentials: 'include',
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
