@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
+import { BrowserRouter as Router,Route,Link,NavLink,Switch} from 'react-router-dom';
 import Home from './components/home';
+import NotFound from './components/not-found';
 
 class Main extends React.Component {
 
@@ -18,18 +19,20 @@ class Main extends React.Component {
         this.setState({user: user})
     }
 
-
     render() {
         return (
             <div>
                 <Router exact path="/">
                     <div>
-                        <Route exact path="/"
-                               render={(props) => (<Home
-                               user={this.state.user}
-                               updateUser={this.updateUser}
-                               logoutUser={this.logoutUser}
-                               {...props}/>)}/>
+                        <Switch>
+                            <Route exact path="/"
+                                   render={(props) => (<Home
+                                   user={this.state.user}
+                                   updateUser={this.updateUser}
+                                   logoutUser={this.logoutUser}
+                                   {...props}/>)}/>
+                            <Route component={NotFound} />
+                        </Switch>
                     </div>
                     </Router>
                         <div className="app-container">
