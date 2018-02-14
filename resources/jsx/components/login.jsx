@@ -67,7 +67,7 @@ module.exports = class Login extends React.Component {
         return(
             <div>
                 <h2 className="app-heading--secondary">Login</h2>
-                <form>
+                <form className="app-margin--m">
                     <div className="">
                         <label>Name</label>
                         <input type="text"
@@ -78,7 +78,7 @@ module.exports = class Login extends React.Component {
                                 name="username" />
                     </div>
 
-                    <div className="">
+                    <div className="app-margin--m">
                         <label>Password</label>
                         <input type="password"
                                name="password"

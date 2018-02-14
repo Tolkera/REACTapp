@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from "react-toastr";
 
 class Registration extends React.Component {
 
@@ -42,19 +43,9 @@ class Registration extends React.Component {
             passwordRepeat: this.state.passwordRepeat
         };
 
-        const url = '/api/users';
+        this.props.registerUser(user);
 
-        fetch(url, {
-            body: JSON.stringify(user),
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-        }).then(function(res) {
-            console.log(res)
-        }, function(error) {
-            console.log(error)
-        })
+
     }
 
     handleInputChange(e){
@@ -73,7 +64,7 @@ class Registration extends React.Component {
             <div>
                 <h2 className="app-heading--secondary">Register</h2>
                 <form>
-                    <div className="">
+                    <div className="app-margin--m">
                         <label>Name</label>
                         <input type="text" className="app-form-control app-margin--xs"
                                required
@@ -82,7 +73,7 @@ class Registration extends React.Component {
                         />
                     </div>
 
-                    <div className="">
+                    <div className="app-margin--m">
                         <label>First Name</label>
                         <input type="text" className="app-form-control app-margin--xs"
                                required
@@ -90,7 +81,7 @@ class Registration extends React.Component {
                                onChange={this.handleInputChange}
                               />
                     </div>
-                    <div className="">
+                    <div className="app-margin--m">
                         <label>Password</label>
                         <input type="password" className="app-form-control app-margin--xs"
                                required
@@ -98,7 +89,7 @@ class Registration extends React.Component {
                                onChange={this.handleInputChange}
                                 />
                     </div>
-                    <div className="">
+                    <div className="app-margin--m">
                         <label>Repeat your password</label>
                         <input type="password" className="app-form-control app-margin--xs"
                                required

@@ -11,9 +11,10 @@ var es = require('event-stream');
 var path = require('path');
 
 gulp.task('sass', function () {
-  return gulp.src('./scss/styles.scss')
+  return gulp.src('./resources/scss/styles.scss')
       .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
       .pipe(gulp.dest('public/'));
+    
 });
 
 gulp.task('babel', function(done) {
@@ -34,8 +35,8 @@ gulp.task('babel', function(done) {
 
 gulp.task('watch', function () {
     gulp.watch(
-        ['./scss/*/*.scss',
-            './scss/*.scss',
+        ['./resources/scss/*/*.scss',
+            './resources/scss/*.scss',
             './resources/jsx/*.jsx',
             './resources/jsx/*/*.jsx',
             './resources/jsx/*/*/*.jsx'],
