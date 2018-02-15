@@ -24,20 +24,21 @@
 }
 
 .app-btn--neutral {
-  border: 1px solid rgba(255,255,255,.3);
-  color: #fff;
+  border: 1px solid lighten($color-attention, 5%);
+  color: $color-attention;
 
   &:hover {
-    border-color: rgba(255,255,255,1)
+    border-color: $color-attention;
   }
 }
 
 .app-btn--link {
   text-decoration: underline;
-  color: rgba(255,255,255,.3);
+  color: lighten($color-attention, 5%);
+  vertical-align: middle;
 
   &:hover {
     text-decoration: none;
-    color: #fff;
+    color: $color-attention;
   }
 }

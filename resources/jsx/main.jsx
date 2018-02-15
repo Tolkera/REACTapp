@@ -4,19 +4,23 @@ import { BrowserRouter as Router,Route,Link,NavLink,Switch, Redirect} from 'reac
 import Home from './components/home';
 import NotFound from './components/not-found';
 import MainNav from './components/nav';
-import Tasks from './components/tasks';
-import { LogoutUser } from './services/user';
+import Tasks from './components/category-list';
+import { LogoutUser } from './services/user-service';
+import Notification  from './components/notification';
 
+let notificationId = 0;
 class Main extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            user: window.bootstrappedUserObject
+            user: window.bootstrappedUserObject,
+            notification: {}
         };
 
         this.updateUser = this.updateUser.bind(this);
-        this.logoutUser = this.logoutUser.bind(this)
+        this.logoutUser = this.logoutUser.bind(this);
+        this.showNotification = this.showNotification.bind(this);
     }
 
     updateUser(user){
@@ -24,12 +28,20 @@ class Main extends React.Component {
     }
 
     logoutUser(){
-        LogoutUser(null, ()=>{}, this.updateUser)
+        LogoutUser(null, this.showNotification, this.updateUser)
+    }
+
+    showNotification(data){
+        data.id = ++notificationId;
+        this.setState({
+            notification: data
+        })
     }
 
     render() {
         return (
             <div>
+                <Notification data={this.state.notification} />
                 <Router exact path="/">
                     <div>
                         <MainNav logoutUser={this.logoutUser} user={this.state.user}/>
@@ -37,17 +49,15 @@ class Main extends React.Component {
                             <Route exact path="/"
                                    render={(props) => (<Home
                                    user={this.state.user}
+                                   showNotification={this.showNotification}
                                    updateUser={this.updateUser}
                                    logoutUser={this.logoutUser}
                                    {...props}/>)}/>
 
-                            <Route exact path="/tasks1"
-                                   render={(props) => (<Tasks
-                                   user={this.state.user}
-                                   {...props}/>)}/>
-
-
-                            <PrivateRoute path="/tasks" user={this.state.user} component={Tasks} />
+                            <PrivateRoute path="/tasks"
+                                          user={this.state.user}
+                                          component={Tasks}
+                                          showNotification={this.showNotification}/>
                             <Route component={NotFound} />
                         </Switch>
                     </div>
@@ -78,8 +88,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
         <Route
             {...rest}
-            render={props =>
-      rest.user ? (
+            render={props => rest.user ? (
         <Component {...props} {...rest} />
       ) : (
         <Redirect
@@ -88,11 +97,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             state: { from: props.location }
           }}
         />
-      )
-    }
-        />
-    );
-}
-
+      )}/>);
+};
 
 ReactDOM.render(<Main  />, document.getElementById('js-app'));

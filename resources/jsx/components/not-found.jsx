@@ -8,7 +8,6 @@ module.exports = class NotFound extends React.Component {
         window.addEventListener('mousemove', this.handleMouseMove.bind(this), false)
     }
 
-
     handleMouseMove(e){
         let settings = {
             mouseSpeed: 30

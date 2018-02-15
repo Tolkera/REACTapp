@@ -1,29 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 import { HandleError, GetErrorText, ShowError } from '../utils/error';
-import {LoginUser, LogoutUser, UpdateUser, RegisterUser} from '../services/user';
+import {LoginUser, LogoutUser, UpdateUser, RegisterUser} from '../services/user-service';
 import { ToastContainer } from "react-toastr";
 import Profile from '../components/profile';
 import Registration from '../components/registration';
 import Login from '../components/login';
-import Notification  from '../components/notification';
-let notificationId = 0;
-
 
 export default class Home extends React.Component{
 
     constructor(props) {
         super(props);
-        this.state = {notification: {}};
-        this.showNotification = this.showNotification.bind(this);
-        this.updateUser = this.updateUser.bind(this);
-    }
 
-    showNotification(data){
-        data.id = ++notificationId;
-        this.setState({
-            notification: data
-        })
+        this.updateUser = this.updateUser.bind(this);
     }
 
     updateUser(type, user) {
@@ -43,7 +32,7 @@ export default class Home extends React.Component{
                 break;
         }
 
-        updateApiCall(user, this.showNotification, this.props.updateUser)
+        updateApiCall(user, this.props.showNotification, this.props.updateUser)
     }
 
 
@@ -53,9 +42,6 @@ export default class Home extends React.Component{
 
 
                 <div  className="app-container">
-
-                    <Notification data={this.state.notification} />
-
 
                     {this.props.user ?
                         <Profile user={this.props.user} updateUser={this.updateUser}/>
