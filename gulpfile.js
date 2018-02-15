@@ -24,7 +24,7 @@ gulp.task('babel', function(done) {
         var tasks = files.map(function(entry) {
             var fileName = path.basename(entry.substring(0, entry.length - 3) + 'js');
             return browserify({ entries: [entry], extensions: ['.jsx'] })
-                .transform("babelify", {presets: ["es2015", "react"]})
+                .transform("babelify", {presets: ["es2015", "react"], plugins: ["transform-object-rest-spread"]})
                 .bundle()
                 .pipe(source(fileName))
                 .pipe(gulp.dest('public'));

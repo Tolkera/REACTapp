@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router,Route,Link,NavLink,Switch} from 'react-router-dom';
+import { BrowserRouter as Router,Route,Link,NavLink,Switch, Redirect} from 'react-router-dom';
 import Home from './components/home';
 import NotFound from './components/not-found';
 import MainNav from './components/nav';
+import Tasks from './components/tasks';
 import { LogoutUser } from './services/user';
-
 
 class Main extends React.Component {
 
@@ -40,6 +40,14 @@ class Main extends React.Component {
                                    updateUser={this.updateUser}
                                    logoutUser={this.logoutUser}
                                    {...props}/>)}/>
+
+                            <Route exact path="/tasks1"
+                                   render={(props) => (<Tasks
+                                   user={this.state.user}
+                                   {...props}/>)}/>
+
+
+                            <PrivateRoute path="/tasks" user={this.state.user} component={Tasks} />
                             <Route component={NotFound} />
                         </Switch>
                     </div>
@@ -62,6 +70,28 @@ class Main extends React.Component {
                 </div>
         );
     }
+}
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+
+    return(
+
+        <Route
+            {...rest}
+            render={props =>
+      rest.user ? (
+        <Component {...props} {...rest} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { from: props.location }
+          }}
+        />
+      )
+    }
+        />
+    );
 }
 
 

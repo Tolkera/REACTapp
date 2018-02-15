@@ -31363,6 +31363,55 @@ module.exports = warning;
 
 }).call(this,require('_process'))
 },{"_process":132}],401:[function(require,module,exports){
+"use strict";
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+module.exports = function (_React$Component) {
+    _inherits(Category, _React$Component);
+
+    function Category() {
+        _classCallCheck(this, Category);
+
+        return _possibleConstructorReturn(this, (Category.__proto__ || Object.getPrototypeOf(Category)).apply(this, arguments));
+    }
+
+    _createClass(Category, [{
+        key: "render",
+        value: function render() {
+
+            return _react2.default.createElement(
+                "div",
+                { "class": "app-container" },
+                _react2.default.createElement(
+                    "div",
+                    { "class": "app-categories" },
+                    _react2.default.createElement(
+                        "div",
+                        { "class": "app-grid" },
+                        _react2.default.createElement("div", { "class": "app-grid__item app-grid__item--3-4 app-margin--xxl" })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Category;
+}(_react2.default.Component);
+
+},{"react":396}],402:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -31486,7 +31535,7 @@ var Home = function (_React$Component) {
 
 exports.default = Home;
 
-},{"../components/login":402,"../components/notification":405,"../components/profile":406,"../components/registration":407,"../services/user":409,"../utils/error":410,"react":396,"react-router-dom":154,"react-toastr":171}],402:[function(require,module,exports){
+},{"../components/login":403,"../components/notification":406,"../components/profile":407,"../components/registration":408,"../services/user":411,"../utils/error":412,"react":396,"react-router-dom":154,"react-toastr":171}],403:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31623,7 +31672,7 @@ module.exports = function (_React$Component) {
     return Login;
 }(_react2.default.Component);
 
-},{"react":396}],403:[function(require,module,exports){
+},{"react":396}],404:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31728,7 +31777,7 @@ module.exports = function (_React$Component) {
     return MainNav;
 }(_react2.default.Component);
 
-},{"react":396,"react-router-dom":154}],404:[function(require,module,exports){
+},{"react":396,"react-router-dom":154}],405:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31826,7 +31875,7 @@ module.exports = function (_React$Component) {
     return NotFound;
 }(_react2.default.Component);
 
-},{"react":396,"react-router-dom":154}],405:[function(require,module,exports){
+},{"react":396,"react-router-dom":154}],406:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31901,7 +31950,7 @@ module.exports = function (_React$Component) {
     return Login;
 }(_react2.default.Component);
 
-},{"react":396,"react-toastr":171}],406:[function(require,module,exports){
+},{"react":396,"react-toastr":171}],407:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32056,7 +32105,7 @@ var Profile = function (_React$Component) {
 
 module.exports = Profile;
 
-},{"react":396}],407:[function(require,module,exports){
+},{"react":396}],408:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32229,7 +32278,74 @@ var Registration = function (_React$Component) {
 
 module.exports = Registration;
 
-},{"react":396}],408:[function(require,module,exports){
+},{"react":396}],409:[function(require,module,exports){
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _category = require('./category');
+
+var _category2 = _interopRequireDefault(_category);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+module.exports = function (_React$Component) {
+    _inherits(Tasks, _React$Component);
+
+    function Tasks() {
+        _classCallCheck(this, Tasks);
+
+        return _possibleConstructorReturn(this, (Tasks.__proto__ || Object.getPrototypeOf(Tasks)).apply(this, arguments));
+    }
+
+    _createClass(Tasks, [{
+        key: 'render',
+        value: function render() {
+            console.log('tasks', this.props);
+
+            var categories = this.props.user.categories.map(function (item, i) {
+
+                return _react2.default.createElement(
+                    'div',
+                    null,
+                    'item.name'
+                );
+            });
+
+            return _react2.default.createElement(
+                'div',
+                { 'class': 'app-container' },
+                _react2.default.createElement(
+                    'div',
+                    { 'class': 'app-categories' },
+                    _react2.default.createElement(
+                        'div',
+                        { 'class': 'app-grid' },
+                        _react2.default.createElement(
+                            'div',
+                            { 'class': 'app-grid__item app-grid__item--3-4 app-margin--xxl' },
+                            categories
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Tasks;
+}(_react2.default.Component);
+
+},{"./category":401,"react":396}],410:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -32258,9 +32374,15 @@ var _nav = require('./components/nav');
 
 var _nav2 = _interopRequireDefault(_nav);
 
+var _tasks = require('./components/tasks');
+
+var _tasks2 = _interopRequireDefault(_tasks);
+
 var _user = require('./services/user');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -32321,6 +32443,13 @@ var Main = function (_React$Component) {
                                         logoutUser: _this2.logoutUser
                                     }, props));
                                 } }),
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/tasks1',
+                                render: function render(props) {
+                                    return _react2.default.createElement(_tasks2.default, _extends({
+                                        user: _this2.state.user
+                                    }, props));
+                                } }),
+                            _react2.default.createElement(PrivateRoute, { path: '/tasks', user: this.state.user, component: _tasks2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { component: _notFound2.default })
                         )
                     )
@@ -32351,9 +32480,26 @@ var Main = function (_React$Component) {
     return Main;
 }(_react2.default.Component);
 
+var PrivateRoute = function PrivateRoute(_ref) {
+    var Component = _ref.component,
+        rest = _objectWithoutProperties(_ref, ['component']);
+
+    console.log('rest', rest);
+    return _react2.default.createElement(_reactRouterDom.Route, _extends({}, rest, {
+        render: function render(props) {
+            return rest.user ? _react2.default.createElement(Component, _extends({}, props, rest)) : _react2.default.createElement(_reactRouterDom.Redirect, {
+                to: {
+                    pathname: "/",
+                    state: { from: props.location }
+                }
+            });
+        }
+    }));
+};
+
 _reactDom2.default.render(_react2.default.createElement(Main, null), document.getElementById('js-app'));
 
-},{"./components/home":401,"./components/nav":403,"./components/not-found":404,"./services/user":409,"react":396,"react-dom":141,"react-router-dom":154}],409:[function(require,module,exports){
+},{"./components/home":402,"./components/nav":404,"./components/not-found":405,"./components/tasks":409,"./services/user":411,"react":396,"react-dom":141,"react-router-dom":154}],411:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32476,7 +32622,7 @@ exports.LogoutUser = LogoutUser;
 exports.UpdateUser = UpdateUser;
 exports.RegisterUser = RegisterUser;
 
-},{"../utils/error":410}],410:[function(require,module,exports){
+},{"../utils/error":412}],412:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32528,4 +32674,4 @@ exports.GetErrorText = GetErrorText;
 exports.HandleError = HandleError;
 exports.ShowError = ShowError;
 
-},{}]},{},[408]);
+},{}]},{},[410]);
