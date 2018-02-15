@@ -3,18 +3,26 @@ import { Link} from 'react-router-dom';
 
 
 module.exports = class NotFound extends React.Component {
-    componentDidMount(){
 
+    componentDidMount() {
+        window.addEventListener('mousemove', this.handleMouseMove.bind(this), false)
+    }
+
+
+    handleMouseMove(e){
         let settings = {
             mouseSpeed: 30
         };
 
-        window.onmousemove = (e) => {
-            var pageX = e.pageX;
-            var pageY = e.pageY;
-            this.px.style.left = pageX/settings.mouseSpeed + 'px';
-            this.px.style.top = pageY/(settings.mouseSpeed) + 'px';
-        }
+        var pageX = e.pageX;
+        var pageY = e.pageY;
+        this.px.style.left = pageX/settings.mouseSpeed + 'px';
+        this.px.style.top = pageY/(settings.mouseSpeed) + 'px';
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener("mousemove", this.handleMouseMove, false);
+
     }
 
 

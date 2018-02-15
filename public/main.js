@@ -31455,80 +31455,9 @@ var Home = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(
-                    'div',
-                    { className: 'app-header' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'app-container' },
-                        _react2.default.createElement(
-                            'nav',
-                            { className: '' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'app-grid' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'app-grid__item app-grid__item--1-4' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'app-header__name' },
-                                        'React App'
-                                    )
-                                ),
-                                this.props.user ? _react2.default.createElement(
-                                    'div',
-                                    { className: 'app-grid__item app-grid__item--1-2' },
-                                    _react2.default.createElement(
-                                        'ul',
-                                        { className: '' },
-                                        _react2.default.createElement(
-                                            'li',
-                                            { className: 'app-nav-item' },
-                                            _react2.default.createElement(
-                                                _reactRouterDom.NavLink,
-                                                { className: 'app-nav-link', activeClassName: 'app-nav-link--active', exact: true, to: '/' },
-                                                'Profile'
-                                            )
-                                        ),
-                                        _react2.default.createElement(
-                                            'li',
-                                            { className: 'app-nav-item' },
-                                            _react2.default.createElement(
-                                                _reactRouterDom.NavLink,
-                                                { className: 'app-nav-link', activeClassName: 'app-nav-link--active', to: '/tasks' },
-                                                'Tasks'
-                                            )
-                                        )
-                                    )
-                                ) : null,
-                                this.props.user ? _react2.default.createElement(
-                                    'div',
-                                    { className: 'app-grid__item app-grid__item--1-4' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'app-header__user' },
-                                        'Welcome, ',
-                                        this.props.user.firstName,
-                                        _react2.default.createElement(
-                                            'button',
-                                            { className: 'app-header__logout-btn app-btn app-btn--neutral',
-                                                onClick: function onClick() {
-                                                    _this2.updateUser('logout', null);
-                                                } },
-                                            'Logout'
-                                        )
-                                    )
-                                ) : null
-                            )
-                        )
-                    )
-                ),
                 _react2.default.createElement(
                     'div',
                     { className: 'app-container' },
@@ -31557,7 +31486,7 @@ var Home = function (_React$Component) {
 
 exports.default = Home;
 
-},{"../components/login":402,"../components/notification":404,"../components/profile":405,"../components/registration":406,"../services/user":408,"../utils/error":409,"react":396,"react-router-dom":154,"react-toastr":171}],402:[function(require,module,exports){
+},{"../components/login":402,"../components/notification":405,"../components/profile":406,"../components/registration":407,"../services/user":409,"../utils/error":410,"react":396,"react-router-dom":154,"react-toastr":171}],402:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31714,6 +31643,111 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 module.exports = function (_React$Component) {
+    _inherits(MainNav, _React$Component);
+
+    function MainNav() {
+        _classCallCheck(this, MainNav);
+
+        return _possibleConstructorReturn(this, (MainNav.__proto__ || Object.getPrototypeOf(MainNav)).apply(this, arguments));
+    }
+
+    _createClass(MainNav, [{
+        key: 'render',
+        value: function render() {
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'app-header' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'app-container' },
+                    _react2.default.createElement(
+                        'nav',
+                        { className: '' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'app-grid' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'app-grid__item app-grid__item--1-4' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'app-header__name' },
+                                    'React App'
+                                )
+                            ),
+                            this.props.user ? _react2.default.createElement(
+                                'div',
+                                { className: 'app-grid__item app-grid__item--1-2' },
+                                _react2.default.createElement(
+                                    'ul',
+                                    { className: '' },
+                                    _react2.default.createElement(
+                                        'li',
+                                        { className: 'app-nav-item' },
+                                        _react2.default.createElement(
+                                            _reactRouterDom.NavLink,
+                                            { className: 'app-nav-link', activeClassName: 'app-nav-link--active', exact: true, to: '/' },
+                                            'Profile'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'li',
+                                        { className: 'app-nav-item' },
+                                        _react2.default.createElement(
+                                            _reactRouterDom.NavLink,
+                                            { className: 'app-nav-link', activeClassName: 'app-nav-link--active', to: '/tasks' },
+                                            'Tasks'
+                                        )
+                                    )
+                                )
+                            ) : null,
+                            this.props.user ? _react2.default.createElement(
+                                'div',
+                                { className: 'app-grid__item app-grid__item--1-4' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'app-header__user' },
+                                    'Welcome, ',
+                                    this.props.user.firstName,
+                                    _react2.default.createElement(
+                                        'button',
+                                        { className: 'app-header__logout-btn app-btn app-btn--neutral',
+                                            onClick: this.props.logoutUser },
+                                        'Logout'
+                                    )
+                                )
+                            ) : null
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return MainNav;
+}(_react2.default.Component);
+
+},{"react":396,"react-router-dom":154}],404:[function(require,module,exports){
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = require('react-router-dom');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+module.exports = function (_React$Component) {
     _inherits(NotFound, _React$Component);
 
     function NotFound() {
@@ -31725,23 +31759,29 @@ module.exports = function (_React$Component) {
     _createClass(NotFound, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _this2 = this;
-
+            window.addEventListener('mousemove', this.handleMouseMove.bind(this), false);
+        }
+    }, {
+        key: 'handleMouseMove',
+        value: function handleMouseMove(e) {
             var settings = {
                 mouseSpeed: 30
             };
 
-            window.onmousemove = function (e) {
-                var pageX = e.pageX;
-                var pageY = e.pageY;
-                _this2.px.style.left = pageX / settings.mouseSpeed + 'px';
-                _this2.px.style.top = pageY / settings.mouseSpeed + 'px';
-            };
+            var pageX = e.pageX;
+            var pageY = e.pageY;
+            this.px.style.left = pageX / settings.mouseSpeed + 'px';
+            this.px.style.top = pageY / settings.mouseSpeed + 'px';
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            window.removeEventListener("mousemove", this.handleMouseMove, false);
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this2 = this;
 
             return _react2.default.createElement(
                 'div',
@@ -31774,7 +31814,7 @@ module.exports = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'app-not-found__parallax js-parallax', ref: function ref(px) {
-                                _this3.px = px;
+                                _this2.px = px;
                             } },
                         _react2.default.createElement('img', { src: 'images/bosch.png' })
                     )
@@ -31786,7 +31826,7 @@ module.exports = function (_React$Component) {
     return NotFound;
 }(_react2.default.Component);
 
-},{"react":396,"react-router-dom":154}],404:[function(require,module,exports){
+},{"react":396,"react-router-dom":154}],405:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -31861,7 +31901,7 @@ module.exports = function (_React$Component) {
     return Login;
 }(_react2.default.Component);
 
-},{"react":396,"react-toastr":171}],405:[function(require,module,exports){
+},{"react":396,"react-toastr":171}],406:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32016,7 +32056,7 @@ var Profile = function (_React$Component) {
 
 module.exports = Profile;
 
-},{"react":396}],406:[function(require,module,exports){
+},{"react":396}],407:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -32189,7 +32229,7 @@ var Registration = function (_React$Component) {
 
 module.exports = Registration;
 
-},{"react":396}],407:[function(require,module,exports){
+},{"react":396}],408:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -32214,6 +32254,12 @@ var _notFound = require('./components/not-found');
 
 var _notFound2 = _interopRequireDefault(_notFound);
 
+var _nav = require('./components/nav');
+
+var _nav2 = _interopRequireDefault(_nav);
+
+var _user = require('./services/user');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32235,6 +32281,7 @@ var Main = function (_React$Component) {
         };
 
         _this.updateUser = _this.updateUser.bind(_this);
+        _this.logoutUser = _this.logoutUser.bind(_this);
         return _this;
     }
 
@@ -32242,6 +32289,11 @@ var Main = function (_React$Component) {
         key: 'updateUser',
         value: function updateUser(user) {
             this.setState({ user: user });
+        }
+    }, {
+        key: 'logoutUser',
+        value: function logoutUser() {
+            (0, _user.LogoutUser)(null, function () {}, this.updateUser);
         }
     }, {
         key: 'render',
@@ -32257,6 +32309,7 @@ var Main = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         null,
+                        _react2.default.createElement(_nav2.default, { logoutUser: this.logoutUser, user: this.state.user }),
                         _react2.default.createElement(
                             _reactRouterDom.Switch,
                             null,
@@ -32300,7 +32353,7 @@ var Main = function (_React$Component) {
 
 _reactDom2.default.render(_react2.default.createElement(Main, null), document.getElementById('js-app'));
 
-},{"./components/home":401,"./components/not-found":403,"react":396,"react-dom":141,"react-router-dom":154}],408:[function(require,module,exports){
+},{"./components/home":401,"./components/nav":403,"./components/not-found":404,"./services/user":409,"react":396,"react-dom":141,"react-router-dom":154}],409:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32423,7 +32476,7 @@ exports.LogoutUser = LogoutUser;
 exports.UpdateUser = UpdateUser;
 exports.RegisterUser = RegisterUser;
 
-},{"../utils/error":409}],409:[function(require,module,exports){
+},{"../utils/error":410}],410:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32475,4 +32528,4 @@ exports.GetErrorText = GetErrorText;
 exports.HandleError = HandleError;
 exports.ShowError = ShowError;
 
-},{}]},{},[407]);
+},{}]},{},[408]);

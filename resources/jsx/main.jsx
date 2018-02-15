@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router,Route,Link,NavLink,Switch} from 'react-router-dom';
 import Home from './components/home';
 import NotFound from './components/not-found';
+import MainNav from './components/nav';
+import { LogoutUser } from './services/user';
+
 
 class Main extends React.Component {
 
@@ -13,10 +16,15 @@ class Main extends React.Component {
         };
 
         this.updateUser = this.updateUser.bind(this);
+        this.logoutUser = this.logoutUser.bind(this)
     }
 
     updateUser(user){
         this.setState({user: user})
+    }
+
+    logoutUser(){
+        LogoutUser(null, ()=>{}, this.updateUser)
     }
 
     render() {
@@ -24,6 +32,7 @@ class Main extends React.Component {
             <div>
                 <Router exact path="/">
                     <div>
+                        <MainNav logoutUser={this.logoutUser} user={this.state.user}/>
                         <Switch>
                             <Route exact path="/"
                                    render={(props) => (<Home
