@@ -38,7 +38,8 @@ module.exports = class CategoryList extends React.Component {
         });
     }
 
-    addCategory(){
+    addCategory(e){
+        e.preventDefault();
         let categoryData = {name: this.state.newCategory};
         AddCategory(categoryData, this.props.showNotification, (category)=>{
 
@@ -104,14 +105,15 @@ module.exports = class CategoryList extends React.Component {
                         </div>
                         <div className="app-grid__item app-grid__item--1-4 ">
                             <h4 className="app-heading--third app-margin--xxl ">Create a category</h4>
-                            <div className="app-margin--m" >
+                            <form className="app-margin--m" >
                                 <input required="required" className="app-form-control"
                                        value={this.state.newCategory}
                                        onChange={this.handleInputChange} name="newCategory"/>
                                 <button onClick={this.addCategory}
+                                        type="submit"
                                     disabled={!this.state.newCategory}
                                         className="app-btn app-btn--attention app-margin--s">Add</button>
-                             </div>
+                             </form>
                         </div>
                     </div>
                 </div>

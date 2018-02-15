@@ -31434,9 +31434,10 @@ module.exports = function (_React$Component) {
         }
     }, {
         key: 'addCategory',
-        value: function addCategory() {
+        value: function addCategory(e) {
             var _this3 = this;
 
+            e.preventDefault();
             var categoryData = { name: this.state.newCategory };
             (0, _categoryService.AddCategory)(categoryData, this.props.showNotification, function (category) {
 
@@ -31521,7 +31522,7 @@ module.exports = function (_React$Component) {
                                 'Create a category'
                             ),
                             _react2.default.createElement(
-                                'div',
+                                'form',
                                 { className: 'app-margin--m' },
                                 _react2.default.createElement('input', { required: 'required', className: 'app-form-control',
                                     value: this.state.newCategory,
@@ -31529,6 +31530,7 @@ module.exports = function (_React$Component) {
                                 _react2.default.createElement(
                                     'button',
                                     { onClick: this.addCategory,
+                                        type: 'submit',
                                         disabled: !this.state.newCategory,
                                         className: 'app-btn app-btn--attention app-margin--s' },
                                     'Add'
