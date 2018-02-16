@@ -4,7 +4,6 @@ import {AddCategory, GetCategories, DeleteCategory, UpdateCategory} from '../ser
 
 module.exports = class CategoryList extends React.Component {
 
-
     constructor(props) {
         super(props);
         this.state = {
@@ -84,7 +83,8 @@ module.exports = class CategoryList extends React.Component {
 
             let propMethods = {
                 deleteCategory: this.deleteCategory,
-                updateCategory: this.updateCategory
+                updateCategory: this.updateCategory,
+                showNotification: this.props.showNotification
             };
 
             return(

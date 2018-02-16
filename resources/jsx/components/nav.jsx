@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink} from 'react-router-dom';
+import { NavLink, Link} from 'react-router-dom';
 
 
 module.exports = class MainNav extends React.Component {
@@ -13,9 +13,9 @@ module.exports = class MainNav extends React.Component {
                     <nav className="">
                         <div className="app-grid">
                             <div className="app-grid__item app-grid__item--1-4">
-                                <div className="app-header__name">
+                                <Link to="/" className="app-header__name">
                                     React App
-                                </div>
+                                </Link>
 
                             </div>
                             { this.props.user ?
@@ -36,14 +36,13 @@ module.exports = class MainNav extends React.Component {
                                 this.props.user ?
                                     <div className="app-grid__item app-grid__item--1-4">
                                         <div className="app-header__user">Welcome, {this.props.user.firstName}
-                                            <button className="app-header__logout-btn app-btn app-btn--neutral"
+                                            <button className="app-header__logout-btn app-btn app-btn--neutral app-header__btn"
                                                     onClick={this.props.logoutUser}>Logout</button>
                                         </div>
                                     </div>
 
 
                                     : null
-
                             }
 
                         </div>

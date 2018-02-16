@@ -23,4 +23,14 @@
   font-family: $font-heading;
   margin-top: 10px;
   color: #d267a6;
+  display: inline-block;
+}
+
+.app-header__btn {
+  border-color: rgba(255,255,255,.3);
+  color: rgba(255,255,255,1);
+
+  &:hover {
+    border-color: rgba(255,255,255,.8)
+  }
 }
