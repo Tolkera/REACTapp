@@ -52,6 +52,5 @@
     "protractor": "~5.1.2",
     "react-toastr": "^3.0.0",
     "vinyl-source-stream": "^2.0.0"
-  },
-  "main": "server.js"
+  }
 }
