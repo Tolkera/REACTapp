@@ -7,7 +7,7 @@ module.exports = {
         db: 'mongodb://localhost/ang',
         port: process.env.PORT || 3000
     },
-    prod: {
+    production: {
         rootPath: rootPath,
         db: 'mongodb://ang5user:ang5userp@ds261527.mlab.com:61527/ang-5-app',
         port: process.env.PORT || 80
