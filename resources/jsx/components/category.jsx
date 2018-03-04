@@ -33,10 +33,7 @@ module.exports = class Category extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if(this.props.data._id !== nextProps.data._id ||
-            this.props.data.name !== nextProps.data.name){
-            this.setState({isEditing: false})
-        }
+        this.setState({isEditing: false})
     }
 
     deleteCategory(e){
@@ -104,7 +101,7 @@ module.exports = class Category extends React.Component {
 
             return(
                 <Task data={item}
-                            key={i}
+                            key={item._id}
                             index={i}
                     {...propMethods}
                 />

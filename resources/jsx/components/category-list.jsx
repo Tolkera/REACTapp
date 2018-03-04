@@ -88,7 +88,8 @@ module.exports = class CategoryList extends React.Component {
             };
 
             return(
-                <Category data={item} key={i}
+                <Category data={item}
+                          key={item._id}
                           index={i}
                         {...propMethods}
                 />

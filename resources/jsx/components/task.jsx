@@ -27,10 +27,7 @@ module.exports = class Task extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if(this.props.data._id !== nextProps.data._id ||
-            this.props.data.name !== nextProps.data.name){
-            this.setState({isEditing: false})
-        }
+        this.setState({isEditing: false})
     }
 
     deleteTask(e){
