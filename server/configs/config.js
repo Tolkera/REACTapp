@@ -9,7 +9,7 @@ module.exports = {
     },
     production: {
         rootPath: rootPath,
-        db: 'mongodb://ang5user:ang5userp@ds261527.mlab.com:61527/ang-5-app',
+        db: process.env.db,
         port: process.env.PORT || 80
     }
 };
