@@ -9,6 +9,7 @@ var source = require('vinyl-source-stream');
 var glob = require('glob');
 var es = require('event-stream');
 var path = require('path');
+var uglify = require('gulp-uglify');
 
 gulp.task('sass', function () {
   return gulp.src('./resources/scss/styles.scss')
@@ -33,6 +34,20 @@ gulp.task('babel', function(done) {
     })
 });
 
+gulp.task('uglify', ['babel'], function(done){
+    glob('./public/**.js', function(err, files) {
+        if(err) done(err);
+
+        var tasks = files.map(function(entry) {
+            var fileName = entry.substring(0, entry.length - 2) + 'js';
+            return gulp.src(fileName)
+                .pipe(uglify())
+                .pipe(gulp.dest('./public/'));
+        });
+        es.merge(tasks).on('end', done);
+    })
+});
+
 gulp.task('watch', function () {
     gulp.watch(
         ['./resources/scss/*/*.scss',
@@ -45,7 +60,7 @@ gulp.task('watch', function () {
 
 gulp.task('default', ['watch']);
 
-gulp.task('build', ['sass', 'babel']);
+gulp.task('build', ['uglify', 'sass']);
 
 
 
