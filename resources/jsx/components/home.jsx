@@ -11,11 +11,9 @@ export default class Home extends React.Component{
 
     constructor(props) {
         super(props);
-
-        this.updateUser = this.updateUser.bind(this);
     }
 
-    updateUser(type, user) {
+    updateUser=(type, user)=>{
         let updateApiCall;
         switch(type){
             case 'login':
@@ -33,7 +31,7 @@ export default class Home extends React.Component{
         }
 
         updateApiCall(user, this.props.showNotification, this.props.updateUser)
-    }
+    };
 
 
     render() {

@@ -5,12 +5,11 @@
 }
 
 .app-header__user {
-  margin-top: 14px;
+  margin-top: 5px;
   text-align: right;
   
   @media(max-width: $mobile){
     text-align: left;
-    margin-top: 5px;
   }
 }
 

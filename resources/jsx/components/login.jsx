@@ -8,9 +8,6 @@ module.exports = class Login extends React.Component {
             user: {},
             isValid: false
         };
-        this.loginUser = this.loginUser.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this)
-
     }
 
     validate(){
@@ -28,16 +25,14 @@ module.exports = class Login extends React.Component {
         return Object.keys(errors).every(x => errors[x])
     }
 
-    handleInputChange(e){
+    handleInputChange=(e)=>{
         this.setState({
             [e.target.name] : e.target.value
         });
-    }
+    };
 
-    loginUser(e){
-
+    loginUser = (e)=>{
         e.preventDefault();
-
         let user = {
             username: this.state.username,
             password: this.state.password

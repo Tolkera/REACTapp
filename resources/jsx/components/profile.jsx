@@ -10,20 +10,13 @@ class Profile extends React.Component {
             password: '',
             passwordRepeat: ''
         };
+    };
 
-        this.updateUser = this.updateUser.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-    }
+    isValid() {
+        return !((this.state.password || this.state.passwordRepeat) && (this.state.password !== this.state.passwordRepeat))
+    };
 
-    isValid(){
-
-        if ((this.state.password || this.state.passwordRepeat) && (this.state.password !== this.state.passwordRepeat)){
-            return false
-        }
-        return true;
-    }
-
-    updateUser(e){
+    updateUser = (e)=>{
 
         e.preventDefault();
 
@@ -35,16 +28,14 @@ class Profile extends React.Component {
         };
 
         this.props.updateUser('update', user);
+    };
 
-    }
-
-    handleInputChange(e){
+    handleInputChange= (e) =>{
 
         this.setState({
             [e.target.name] : e.target.value
         });
-
-    }
+    };
 
     render(){
 

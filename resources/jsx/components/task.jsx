@@ -10,13 +10,9 @@ module.exports = class Task extends React.Component {
             name: this.props.data.name,
             date: moment(this.props.data.created).format('DD MMM HH:mm')
         };
-
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.deleteTask = this.deleteTask.bind(this);
-        this.updateTask = this.updateTask.bind(this);
     }
 
-    handleInputChange(event) {
+    handleInputChange=(event)=>{
         const target = event.target;
         const value = target.value;
         const name = target.name;
@@ -24,21 +20,21 @@ module.exports = class Task extends React.Component {
         this.setState({
             [name]: value
         });
-    }
+    };
 
     componentWillReceiveProps(nextProps){
         this.setState({isEditing: false})
-    }
+    };
 
-    deleteTask(e){
+    deleteTask=(e)=>{
         e.preventDefault();
         this.props.deleteTask(this.props.data._id, this.props.index);
-    }
+    };
 
-    updateTask(e){
+    updateTask=(e)=>{
         e.preventDefault();
         this.props.updateTask(this.state.name, this.props.data, this.props.index)
-    }
+    };
 
     render(){
 

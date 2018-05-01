@@ -6,12 +6,8 @@ let container;
 
 module.exports = class Login extends React.Component {
 
-
     constructor(props){
         super(props);
-        this.state = {
-
-        };
     }
 
     componentWillReceiveProps(nextProps){

@@ -13,16 +13,9 @@ module.exports = class Category extends React.Component {
             newTaskName: '',
             tasks: this.props.data.tasks
         };
-
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.deleteCategory = this.deleteCategory.bind(this);
-        this.updateCategory = this.updateCategory.bind(this);
-        this.addTask = this.addTask.bind(this);
-        this.deleteTask = this.deleteTask.bind(this);
-        this.updateTask = this.updateTask.bind(this);
     }
 
-    handleInputChange(event) {
+    handleInputChange=(event)=> {
         const target = event.target;
         const value = target.value;
         const name = target.name;
@@ -30,23 +23,23 @@ module.exports = class Category extends React.Component {
         this.setState({
             [name]: value
         });
-    }
+    };
 
     componentWillReceiveProps(nextProps){
         this.setState({isEditing: false})
     }
 
-    deleteCategory(e){
+    deleteCategory=(e)=>{
         e.preventDefault();
         this.props.deleteCategory(this.props.data._id, this.props.index);
-    }
+    };
 
-    updateCategory(e){
+    updateCategory=(e)=>{
         e.preventDefault();
         this.props.updateCategory(this.state.name, this.props.data, this.props.index)
-    }
+    };
 
-    addTask(e){
+    addTask=(e)=>{
         e.preventDefault();
         let categoryData = {name: this.state.newTaskName, categoryId: this.props.data._id};
         AddTask(categoryData, this.props.showNotification, (task)=>{
@@ -60,9 +53,9 @@ module.exports = class Category extends React.Component {
                 isAddingTask: false
             })
         })
-    }
+    };
 
-    deleteTask(id, index){
+    deleteTask=(id, index)=>{
         DeleteTask(id, this.props.showNotification, ()=>{
 
             let state = Object.assign({}, this.state);
@@ -72,9 +65,9 @@ module.exports = class Category extends React.Component {
                 tasks: state.tasks
             })
         })
-    }
+    };
 
-    updateTask(name, task, index){
+    updateTask=(name, task, index)=>{
         let taskData = {name: name, _id: task._id};
 
         UpdateTask(taskData, this.props.showNotification, ()=>{

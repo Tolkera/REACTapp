@@ -7,10 +7,6 @@ class Registration extends React.Component {
         this.state = {
             isValid: false
         };
-
-        this.updateUser = this.updateUser.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.validate = this.validate.bind(this);
     }
 
     validate(){
@@ -31,7 +27,7 @@ class Registration extends React.Component {
         return Object.keys(errors).every(x => errors[x])
     }
 
-    updateUser(e){
+    updateUser =(e)=>{
 
         e.preventDefault();
 
@@ -43,11 +39,9 @@ class Registration extends React.Component {
         };
 
         this.props.updateUser('register', user);
-
-
     }
 
-    handleInputChange(e){
+    handleInputChange =(e) =>{
 
         this.setState({
             [e.target.name] : e.target.value

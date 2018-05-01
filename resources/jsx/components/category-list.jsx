@@ -10,24 +10,15 @@ module.exports = class CategoryList extends React.Component {
             newCategory: '',
             categories: []
         };
-
-        this.addCategory = this.addCategory.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.deleteCategory = this.deleteCategory.bind(this);
-        this.updateCategory = this.updateCategory.bind(this)
     }
 
     componentDidMount(){
         GetCategories( ()=>{}, (categories) =>{
             this.setState({categories: categories})
         });
-    }
+    };
 
-    updateCategories(categories){
-        this.setState({categories: categories})
-    }
-
-    handleInputChange(event) {
+    handleInputChange=(event)=>{
         const target = event.target;
         const value = target.value;
         const name = target.name;
@@ -35,9 +26,9 @@ module.exports = class CategoryList extends React.Component {
         this.setState({
             [name]: value
         });
-    }
+    };
 
-    addCategory(e){
+    addCategory=(e)=>{
         e.preventDefault();
         let categoryData = {name: this.state.newCategory};
         AddCategory(categoryData, this.props.showNotification, (category)=>{
@@ -50,9 +41,9 @@ module.exports = class CategoryList extends React.Component {
                 newCategory: ''
             })
         })
-    }
+    };
 
-    deleteCategory(id, index){
+    deleteCategory=(id, index)=>{
         DeleteCategory(id, this.props.showNotification, ()=>{
 
             let state = Object.assign({}, this.state);
@@ -62,9 +53,9 @@ module.exports = class CategoryList extends React.Component {
                 categories: state.categories
             })
         })
-    }
+    };
 
-    updateCategory(name, category, index){
+    updateCategory=(name, category, index)=>{
         let categoryData = {name: name, _id: category._id};
 
         UpdateCategory(categoryData, this.props.showNotification, ()=>{
@@ -76,7 +67,7 @@ module.exports = class CategoryList extends React.Component {
                 categories: state.categories
             })
         })
-    }
+    };
 
     render(){
         let categories = this.state.categories.map((item, i)=>{

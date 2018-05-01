@@ -18,26 +18,22 @@ module.exports = class AppRouter extends React.Component {
             user: window.bootstrappedUserObject,
             notification: {}
         };
+    };
 
-        this.updateUser = this.updateUser.bind(this);
-        this.logoutUser = this.logoutUser.bind(this);
-        this.showNotification = this.showNotification.bind(this);
-    }
-
-    updateUser(user){
+    updateUser=(user)=>{
         this.setState({user: user})
-    }
+    };
 
-    logoutUser(){
+    logoutUser=()=>{
         LogoutUser(null, this.showNotification, this.updateUser)
-    }
+    };
 
-    showNotification(data){
+    showNotification=(data)=>{
         data.id = ++notificationId;
         this.setState({
             notification: data
         })
-    }
+    };
 
     render() {
         return (
