@@ -8,6 +8,7 @@
   "engines": {
     "node": "9.4.0"
   },
+  "postinstall": "gulp build",
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
